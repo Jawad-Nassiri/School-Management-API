@@ -25,4 +25,7 @@ public class Student {
     @JoinColumn(name = "school_id")
     @JsonBackReference
     private School school;
+
+    @OneToOne(mappedBy = "student")
+    private StudentProfile studentProfile;
 }
