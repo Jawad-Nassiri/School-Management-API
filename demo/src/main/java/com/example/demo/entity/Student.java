@@ -1,28 +1,28 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
-@Table(name = "school")
+@Table(name = "student")
 @Getter
 @Setter
 @NoArgsConstructor
-public class School {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
-    private String address;
+    @Column(unique = true)
+    private String email;
 
-    @OneToMany(mappedBy = "school")
-    @JsonManagedReference
-    private List<Student> students;
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    @JsonBackReference
+    private School school;
 }
