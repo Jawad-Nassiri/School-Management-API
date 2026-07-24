@@ -1,0 +1,27 @@
+package com.example.demo.controller;
+
+import com.example.demo.entity.Course;
+import com.example.demo.service.CourseService;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@AllArgsConstructor
+public class CourseController {
+    private final CourseService courseService;
+
+    @PostMapping("/courses")
+    public Course createCourse(@RequestBody Course course) {
+        return courseService.saveCourseInDb(course);
+    }
+
+    @GetMapping("/courses")
+    public List<Course> findAll() {
+        return courseService.findAllCourses();
+    }
+}
