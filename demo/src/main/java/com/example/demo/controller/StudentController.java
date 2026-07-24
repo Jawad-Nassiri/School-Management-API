@@ -1,13 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Student;
+import com.example.demo.dto.StudentRequestDTO;
+import com.example.demo.dto.StudentResponseDTO;
 import com.example.demo.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -15,13 +15,13 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
 
-    @PostMapping("/student")
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.saveStudentInDb(student);
+    @PostMapping("/students")
+    public StudentResponseDTO createStudent(@RequestBody StudentRequestDTO studentRequestDTO) {
+        return studentService.saveStudentInDb(studentRequestDTO);
     }
 
     @GetMapping("/students")
-    public List<Student> findAll() {
+    public List<StudentResponseDTO> findAll() {
         return studentService.findAllStudents();
     }
 }

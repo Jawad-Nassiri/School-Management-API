@@ -17,7 +17,7 @@ import java.util.List;
 public class SchoolController {
     private final SchoolService schoolService;
 
-    @PostMapping("/school")
+    @PostMapping("/schools")
     public SchoolResponseDTO createSchool(@RequestBody SchoolRequestDTO schoolRequestDTO) {
         return schoolService.saveSchoolInDb(schoolRequestDTO);
     }
