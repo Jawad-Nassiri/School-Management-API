@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.EnrollmentRequestDTO;
+import com.example.demo.dto.EnrollmentResponseDTO;
 import com.example.demo.entity.Enrollment;
 import com.example.demo.service.EnrollmentService;
 import lombok.AllArgsConstructor;
@@ -14,12 +16,12 @@ public class EnrollmentController {
     private final EnrollmentService enrollmentService;
 
     @PostMapping("/enrollments")
-    public Enrollment createEnrollment(@RequestBody Enrollment enrollment) {
-        return enrollmentService.saveEnrollmentInDb(enrollment);
+    public EnrollmentResponseDTO createEnrollment(@RequestBody EnrollmentRequestDTO enrollmentRequestDTO) {
+        return enrollmentService.saveEnrollmentInDb(enrollmentRequestDTO);
     }
 
     @GetMapping("/enrollments")
-    public List<Enrollment> findAll() {
+    public List<EnrollmentResponseDTO> findAll() {
         return enrollmentService.findAllEnrollments();
     }
 }
