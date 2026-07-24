@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.entity.School;
+import com.example.demo.dto.SchoolRequestDTO;
+import com.example.demo.dto.SchoolResponseDTO;
 import com.example.demo.service.SchoolService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +18,12 @@ public class SchoolController {
     private final SchoolService schoolService;
 
     @PostMapping("/school")
-    public School createSchool(@RequestBody School school) {
-        return schoolService.saveSchoolInDb(school);
+    public SchoolResponseDTO createSchool(@RequestBody SchoolRequestDTO schoolRequestDTO) {
+        return schoolService.saveSchoolInDb(schoolRequestDTO);
     }
 
     @GetMapping("/schools")
-    public List<School> findAll() {
+    public List<SchoolResponseDTO> findAll() {
         return schoolService.findAllSchools();
     }
 }
