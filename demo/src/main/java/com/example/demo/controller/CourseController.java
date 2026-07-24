@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.CourseRequestDTO;
+import com.example.demo.dto.CourseResponseDTO;
 import com.example.demo.entity.Course;
 import com.example.demo.service.CourseService;
 import lombok.AllArgsConstructor;
@@ -16,12 +18,12 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping("/courses")
-    public Course createCourse(@RequestBody Course course) {
-        return courseService.saveCourseInDb(course);
+    public CourseResponseDTO createCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
+        return courseService.saveCourseInDb(courseRequestDTO);
     }
 
     @GetMapping("/courses")
-    public List<Course> findAll() {
+    public List<CourseResponseDTO> findAll() {
         return courseService.findAllCourses();
     }
 }

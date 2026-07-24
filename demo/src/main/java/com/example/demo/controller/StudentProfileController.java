@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.StudentProfile;
+import com.example.demo.dto.StudentProfileRequestDTO;
+import com.example.demo.dto.StudentProfileResponseDTO;
 import com.example.demo.service.StudentProfileService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +17,12 @@ public class StudentProfileController {
     private final StudentProfileService studentProfileService;
 
     @PostMapping("/student-profiles")
-    public StudentProfile createStudentProfile(@RequestBody StudentProfile studentProfile) {
-        return studentProfileService.saveStudentProfileInDb(studentProfile);
+    public StudentProfileResponseDTO createStudentProfile(@RequestBody StudentProfileRequestDTO studentProfileRequestDTO) {
+        return studentProfileService.saveStudentProfileInDb(studentProfileRequestDTO);
     }
 
     @GetMapping("/student-profiles")
-    public List<StudentProfile> findAll() {
+    public List<StudentProfileResponseDTO> findAll() {
         return studentProfileService.findAllStudentProfiles();
     }
 }
