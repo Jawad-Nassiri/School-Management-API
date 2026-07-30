@@ -4,6 +4,7 @@ import com.example.demo.dto.CourseRequestDTO;
 import com.example.demo.dto.CourseResponseDTO;
 import com.example.demo.entity.Course;
 import com.example.demo.service.CourseService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping("/courses")
-    public CourseResponseDTO createCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
+    public CourseResponseDTO createCourse(@Valid @RequestBody CourseRequestDTO courseRequestDTO) {
         return courseService.saveCourseInDb(courseRequestDTO);
     }
 

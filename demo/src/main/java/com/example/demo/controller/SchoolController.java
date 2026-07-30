@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.SchoolRequestDTO;
 import com.example.demo.dto.SchoolResponseDTO;
 import com.example.demo.service.SchoolService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class SchoolController {
     private final SchoolService schoolService;
 
     @PostMapping("/schools")
-    public SchoolResponseDTO createSchool(@RequestBody SchoolRequestDTO schoolRequestDTO) {
+    public SchoolResponseDTO createSchool(@Valid @RequestBody SchoolRequestDTO schoolRequestDTO) {
         return schoolService.saveSchoolInDb(schoolRequestDTO);
     }
 

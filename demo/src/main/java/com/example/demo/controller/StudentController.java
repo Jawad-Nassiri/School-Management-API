@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.StudentRequestDTO;
 import com.example.demo.dto.StudentResponseDTO;
 import com.example.demo.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping("/students")
-    public StudentResponseDTO createStudent(@RequestBody StudentRequestDTO studentRequestDTO) {
+    public StudentResponseDTO createStudent(@Valid @RequestBody StudentRequestDTO studentRequestDTO) {
         return studentService.saveStudentInDb(studentRequestDTO);
     }
 

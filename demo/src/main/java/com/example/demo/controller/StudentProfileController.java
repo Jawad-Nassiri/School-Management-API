@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.StudentProfileRequestDTO;
 import com.example.demo.dto.StudentProfileResponseDTO;
 import com.example.demo.service.StudentProfileService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class StudentProfileController {
     private final StudentProfileService studentProfileService;
 
     @PostMapping("/student-profiles")
-    public StudentProfileResponseDTO createStudentProfile(@RequestBody StudentProfileRequestDTO studentProfileRequestDTO) {
+    public StudentProfileResponseDTO createStudentProfile(@Valid @RequestBody StudentProfileRequestDTO studentProfileRequestDTO) {
         return studentProfileService.saveStudentProfileInDb(studentProfileRequestDTO);
     }
 
